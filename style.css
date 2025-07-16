@@ -1,0 +1,163 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    /* Default theme variables (Soft Pink) */
+    --primary-bg: #fdf6fd;
+    --accent-color: #d8bfd8;
+    --text-color: #7f65a0;
+    --body-gradient-start: #fdf6fd;
+    --body-gradient-end: #e6e6fa;
+    --shadow-color: rgba(170, 150, 200, 0.15);
+    --transition-duration: 15s;
+}
+
+/* --- Theme Classes --- */
+body.theme-soft-pink {
+    --primary-bg: #fdf6fd; --accent-color: #d8bfd8;
+    --text-color: #7f65a0; --body-gradient-start: #fdf6fd;
+    --body-gradient-end: #e6e6fa; --shadow-color: rgba(170, 150, 200, 0.15);
+}
+body.theme-soft-blue {
+    --primary-bg: #f0f8ff; --accent-color: #add8e6;
+    --text-color: #4a708b; --body-gradient-start: #f0f8ff;
+    --body-gradient-end: #b0e0e6; --shadow-color: rgba(150, 170, 200, 0.15);
+}
+body.theme-soft-green {
+    --primary-bg: #f0fff0; --accent-color: #98fb98;
+    --text-color: #38a067; --body-gradient-start: #f0fff0;
+    --body-gradient-end: #afeeee; --shadow-color: rgba(150, 200, 150, 0.15);
+}
+body.theme-soft-peach {
+    --primary-bg: #fff5ee; --accent-color: #ffdab9;
+    --text-color: #e08050; --body-gradient-start: #fff5ee;
+    --body-gradient-end: #ffdead; --shadow-color: rgba(200, 170, 150, 0.15);
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+    background: linear-gradient(135deg, var(--body-gradient-start), var(--body-gradient-end));
+    transition: background var(--transition-duration) ease-in-out,
+                color var(--transition-duration) ease-in-out;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--text-color);
+    transition: color var(--transition-duration) ease-in-out;
+}
+
+/* --- Search Bar --- */
+.search-container {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+#search-box {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1rem;
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-color);
+    background-color: var(--primary-bg);
+    border: 1px solid var(--accent-color);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: all 0.3s ease, 
+                background-color var(--transition-duration) ease-in-out,
+                color var(--transition-duration) ease-in-out,
+                border-color var(--transition-duration) ease-in-out;
+}
+
+#search-box:focus {
+    outline: none;
+    border-color: var(--text-color);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+/* --- Link Cards --- */
+.shortcut-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.shortcut-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out,
+                background-color var(--transition-duration) ease-in-out,
+                color var(--transition-duration) ease-in-out,
+                box-shadow var(--transition-duration) ease-in-out;
+    will-change: opacity, transform;
+}
+
+/* Class to hide cards for search */
+.shortcut-card.is-hidden {
+    display: none;
+}
+
+.shortcut-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.shortcut-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px var(--shadow-color);
+}
+
+.card-content {
+    flex-grow: 1;
+    margin-right: 1.5rem;
+}
+
+.shortcut-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.shortcut-description {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.logo-container img {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    object-fit: contain;
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+    .shortcut-card {
+        padding: 2rem;
+    }
+}
