@@ -138,3 +138,37 @@ document.addEventListener("DOMContentLoaded", () => {
     container.addEventListener('click', handleCardClick);
     searchBox.addEventListener('input', handleSearch);
 });
+
+// --- Anti-Zoom Logic ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Prevent "Ctrl + Scroll" on Desktop
+    window.addEventListener('wheel', (e) => {
+        if (e.ctrlKey) {
+            e.preventDefault();
+        }
+    }, { passive: false }); // 'passive: false' is required to use preventDefault
+
+    // 2. Prevent Keyboard Zooming (Ctrl/Cmd + "+", "-", "0")
+    window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && 
+            (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+            e.preventDefault();
+        }
+    });
+
+    // 3. Prevent "Pinch to Zoom" on iOS Safari (The Meta Tag is often ignored)
+    document.addEventListener('gesturestart', (e) => {
+        e.preventDefault();
+    });
+    
+    // 4. Prevent double-tap to zoom on some older mobile browsers
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', (event) => {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
+});
