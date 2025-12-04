@@ -1,3 +1,38 @@
+/* --- START OF UNSELECTABLE LOGIC --- */
+
+/* 1. Disable text selection globally */
+body {
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Non-prefixed version */
+}
+
+/* 2. Disable image dragging and selection */
+img {
+    /* Prevents the image from being highlighted */
+    -webkit-user-select: none;
+    user-select: none;
+    
+    /* Prevents the "ghost" image when dragging */
+    -webkit-user-drag: none;
+    
+    /* Optional: Makes the image "invisible" to mouse clicks 
+       (clicks pass through to the card background) */
+    pointer-events: none; 
+}
+
+/* 3. CRITICAL: Re-enable selection for inputs */
+/* If you don't do this, you can't type in your search box! */
+input, textarea {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}
+
+/* --- END OF UNSELECTABLE LOGIC --- */
+
 html, body {
     /* Prevents pinch-to-zoom on modern mobile browsers */
     touch-action: pan-x pan-y; 

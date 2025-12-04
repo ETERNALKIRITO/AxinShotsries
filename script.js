@@ -75,21 +75,30 @@ document.addEventListener("DOMContentLoaded", () => {
         container.prepend(clickedCard);
     }
 
-    /**
+   /**
      * Handles the search input to filter cards.
+     * UPDATED: Now checks the URL (href) just like the alternative website.
      */
     function handleSearch() {
         const query = searchBox.value.toLowerCase();
         
         allCards.forEach(card => {
+            // 1. Get Title and Description (Visual text)
             const title = card.querySelector('.shortcut-title').textContent.toLowerCase();
             const description = card.querySelector('.shortcut-description').textContent.toLowerCase();
-            const isVisible = title.includes(query) || description.includes(query);
+
+            // 2. Get the URL (The link destination)
+            // This is the specific feature from your alternative website
+            const url = card.href.toLowerCase(); 
+
+            // 3. Check if the query exists in the Title, Description, OR URL
+            const isVisible = title.includes(query) || 
+                              description.includes(query) || 
+                              url.includes(query); 
             
             card.classList.toggle('is-hidden', !isVisible);
         });
     }
-
     /**
      * Fades in cards as they become visible on the screen.
      */
